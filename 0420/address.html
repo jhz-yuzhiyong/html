@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html data-use-rem = "750">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title></title>
+<link href="store/style/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<script src="store/js/rem.js"></script>
+<div class="column_wrapper">
+	<div class="col_margin">
+		<div class="vipInfoBox" data-name="李小勇" data-phone = "13478965001" data-address = "北京市朝阳区小营北路29号院6号楼二层">
+			<div class="vipInfoAddress vipInfo">
+				<div class="vipInfo-man people_1">
+					<p><em>收  货 人：</em><span>李小勇</span></p>
+					<p><em>收货电话：</em><span>13478965001</span></p>
+					<p><em>收货地址：</em><span>北京市朝阳区小营北路29号院6号楼二层</span></p>
+				</div>
+			</div>
+			<div class="vipInfo">
+				<div class="vipInfo-man address-btn">
+					<p class="">
+						<input type="checkbox" id="checkbox-1" name="checkbox-1-set" class="regular-radio" checked /><label for="checkbox-1">设为默认地址</label>
+					</p>
+					<a href="javascript:;" onclick="modfiy_address(this,'people_1')">修改</a>
+					<a href="javascript:;" onclick="del_address(this)">删除</a>
+				</div>
+				
+			</div>
+		</div>
+		<div class="vspace"></div>
+		<div class="vipInfoBox" data-name="李小勇1" data-phone = "13478965001" data-address = "北京市朝阳区小营北路29号院6号楼二层">
+			<div class="vipInfoAddress vipInfo">
+				<div class="vipInfo-man people_2">
+					<p><em>收  货 人：</em><span>李小勇1</span></p>
+					<p><em>收货电话：</em><span>13478965001</span></p>
+					<p><em>收货地址：</em><span>北京市朝阳区小营北路29号院6号楼二层</span></p>
+				</div>
+			</div>
+			<div class="vipInfo">
+				<div class="vipInfo-man address-btn">
+					<p class="">
+						<input type="checkbox" id="checkbox-2" name="checkbox-2-set" class="regular-radio" /><label for="checkbox-2">设为默认地址</label>
+					</p>
+					<a href="javascript:;" onclick="modfiy_address(this,'people_2')">修改</a>
+					<a href="javascript:;" onclick="del_address(this)">删除</a>
+				</div>
+				
+			</div>
+		</div>
+		<div class="vspace"></div>
+		<div id="address-append"></div>
+		<a href="javascript:;" class="add-address-btn"></a>
+	</div>
+</div>
+<div class="cover-bg"></div>
+<div class="cover fade">
+	<div class="col_margin cover-dialog">
+		<div class="modify-address-box">
+			<label for="input-set-1" class="label">收货人：</label><input type="text" id="input-set-1" class="text" />
+			<div class="clear"></div>
+			<label for="input-set-2" class="label">收货电话：</label><input type="text" id="input-set-2" class="text" />
+			<div class="clear"></div>
+			<label for="input-set-3" class="label">收货地址：</label><textarea class="text textarea" id="input-set-3"></textarea>
+			<div class="clear"></div>
+			<div class="vipInfo modify-address-check">
+				<div class="vipInfo-man address-btn">
+					<p class="">
+						<input type="checkbox" id="checkbox-0-0" name="checkbox-0-set" class="regular-radio" /><label for="checkbox-0-0">设为默认地址</label>
+					</p>
+				</div>
+			</div>
+			<div class="modify-address-btn">
+				<a href="javascript:;">取消</a>
+				<a href="javascript:;" onclick="add_adr()">完成</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<script src="store/js/jq.js"></script>
+<script>
+	$(function(){
+		$(".add-address-btn").click(function(){
+			$(".cover-bg").show();
+			$(".cover").show(function(){
+				$(this).addClass("in");
+			});
+		});
+		$(".modify-address-btn a").eq(0).click(function(){
+			$(".cover").removeClass("in");
+			window.setTimeout(function(){
+				$(".cover-bg").hide();
+				$(".cover").hide();
+				$(".text").val("");
+			},300);
+		});
+	})
+	function add_adr(){
+		var name = ltrim($("#input-set-1").val());
+		var tel = ltrim($("#input-set-2").val());
+		var address = ltrim($("#input-set-3").val());
+		var num = $(".vipInfoBox").length+1;
+		var chec = "";
+		if(name==""&&tel==""&&address==""){
+			alert("填写完整~~~");
+			return false;
+		}
+		if($("#checkbox-0-0").is(":checked")){
+			chec = "checked"
+		}
+		var html = "";
+		html = '<div class="vipInfoBox"><div class="vipInfoAddress vipInfo"><div class="vipInfo-man"><p>收  货 人：<span>'+name+'</span></p><p>收货电话：<span>'+tel+'</span></p><p><em>收货地址：</em><span>'+address+'</span></p></div></div><div class="vipInfo"><div class="vipInfo-man address-btn"><p class=""><input type="checkbox" id="checkbox-'+num+'" name="checkbox-'+num+'-set" class="regular-radio" '+chec+' /><label for="checkbox-'+num+'">设为默认地址</label></p><a href="javascript:;">修改</a><a href="javascript:;" onclick="del_address(this)">删除</a></div></div></div><div class="vspace"></div>';
+		$(html).appendTo($("#address-append"));
+		$(".cover").removeClass("in");
+		window.setTimeout(function(){
+			$(".cover-bg").hide();
+			$(".cover").hide();
+			$(".text").val("");
+		},300);
+	}
+	function del_address(t){
+		var _obj = $(t).parents('.vipInfoBox');
+		_obj.siblings(".vspace").remove();
+		_obj.remove();
+	}
+	
+	function modfiy_address(t,box){
+		var _obj = $(t).parents('.vipInfoBox');
+		var html = '<div class="cover-bg cover_bg_random"></div><div class="cover cover_random fade"><div class="col_margin cover-dialog"><div class="modify-address-box"><label for="input-modfiy-1" class="label">收货人：</label><input type="text" id="input-modfiy-1" class="text" value="'+_obj.data("name")+'" /><div class="clear"></div><label for="input-modfiy-2" class="label">收货电话：</label><input type="text" id="input-modfiy-2" value="'+_obj.data("phone")+'" class="text" /><div class="clear"></div><label for="input-modfiy-3" class="label">收货地址：</label><textarea class="text textarea" id="input-modfiy-3">'+_obj.data("address")+'</textarea><div class="clear"></div><div class="modify-address-btn" style=" margin-top:0.3rem"><a href="javascript:;" onclick="del_pop()">取消</a><a href="javascript:;" onclick="address_success(this,\''+box+'\')">完成</a></div><div class="clear"></div></div></div></div>';
+		$(html).appendTo($("body"));
+		$(".cover_bg_random").show();
+		$(".cover_random").show(function(){
+			$(this).addClass("in");
+		});
+		
+	}
+	function address_success(t,box){
+		var name = ltrim($("#input-modfiy-1").val());
+		var tel = ltrim($("#input-modfiy-2").val());
+		var address = ltrim($("#input-modfiy-3").val());
+		if(name==""&&tel==""&&address==""){
+			alert("填写完整~~~");
+			return false;
+		}
+		$("."+box).html('<p><em>收  货 人：</em><span>'+name+'</span></p><p><em>收货电话：</em><span>'+tel+'</span></p><p><em>收货地址：</em><span>'+address+'</span></p>');
+		del_pop();
+	}
+	function del_pop(){
+		$(".cover_random").removeClass("in");
+		window.setTimeout(function(){
+			$(".cover_bg_random").hide(function(){
+				$(this).remove();
+			});
+			$(".cover_random").hide(function(){
+				$(this).remove();
+			});
+		},300);
+	}
+	function ltrim(text){
+		return (text || "").replace(/^\s+/g,"").replace(/\s+$/g,"");
+	}
+</script>
+</body>
+</html>
+

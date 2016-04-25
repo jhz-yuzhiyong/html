@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html data-use-rem = "750">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title></title>
+<link href="store/style/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<script src="store/js/rem.js"></script>
+<div class="column_wrapper">
+	<div class="col_margin">
+		<h3 class="vipInfoTitle">会员信息</h3>
+		<div class="vipInfoBox">
+			<div class="vipInfo">
+				<div class="vipInfo-man">
+					<p><em>昵称：</em><span>墨赜</span></p>
+					<div class="show" style="">
+						<p><em>性别：</em><span id="sex">男</span></p>
+						<p><em>年龄：</em><span id="age">38</span></p>
+					</div>
+					<div class="hide">
+						<p><em>性别：</em><input type="radio" id="radio-1-1" name="radio-1-set" class="regular-radio" value="男" checked /><label for="radio-1-1">男</label><input type="radio" id="radio-1-2" name="radio-1-set" class="regular-radio" value="女" /><label for="radio-1-2">女</label></p>
+						<p><em>年龄：</em><input type="text" class="age-text" name="age"/></p>
+					</div>
+					<p><em>会员等级：</em><i class="stars"></i><i class="stars"></i></p>
+					<a href="javascript:;" class="vipInfo-modify-btn show" id="" onclick="mod_people(this)">修改</a>
+					<a href="javascript:;" class="vipInfo-modify-btn hide sub-btn" onclick="sub_people(this)">提交</a>
+				</div>
+			</div>
+			<div class="vipInfoAddress vipInfo">
+				<div class="vipInfo-man">
+					<h3 class="vipInfoAddress-title">收货信息</h3>
+					<p><em>收  货 人：</em><span>李小勇</span></p>
+					<p><em>收货电话：</em><span>13478965001</span></p>
+					<p><em>收货地址：</em><span>北京市朝阳区小营北路29号院6号楼二层</span></p>
+					<a href="/xyz/2016/0420/address.html" class="vipInfo-modify-btn">更多地址</a>
+				</div>
+			</div>
+		</div>
+		<div class="vspace" style="height: 20px;"></div>
+		<h3 class="vipInfoTitle">发货信息</h3>
+		<ul class="cargo-info-list">
+			<li>
+				<p class="time">2015/1/12</p>
+				<div class="vipInfoBox bg">
+					<p class="title">商品详情：机器人小胖标配</p>
+					<p class="title">订单编号：102436479850005</p>
+					<div class="address_details">
+						<p class="title" >购买日期：2015/1/14</p>
+						<p class="title">产品数量：1</p>
+						<p class="order-money">付款金额（含运费）：20，000</p>
+						<p class="line_split"></p>
+						<p class="title">物流状态：已出库</p>
+						<p class="title">运单号码：123547956155436</p>
+						<p class="title">快递公司：顺丰</p>
+						<p class="title">收  货 人：李小勇</p>
+						<p class="title">收货电话：13364789874</p>
+						<p class="title">收货地址：北京市朝阳区小营北路29号院6号楼二层</p>
+						<a href="/xyz/2016/0420/refund.html" class="vipInfo-modify-btn">退款</a>
+					</div>
+				</div>
+			</li>
+			<li>
+				<p class="time">2015/1/12</p>
+				<div class="vipInfoBox bg">
+					<p class="title">商品详情：机器人小胖标配</p>
+					<p class="title">订单编号：102436479850005</p>
+					<div class="address_details">
+						<p class="title" >购买日期：2015/1/14</p>
+						<p class="title">产品数量：1</p>
+						<p class="order-money">付款金额（含运费）：20，000</p>
+						<p class="line_split"></p>
+						<p class="title">物流状态：已出库</p>
+						<p class="title">运单号码：123547956155436</p>
+						<p class="title">快递公司：顺丰</p>
+						<p class="title">收  货 人：李小勇</p>
+						<p class="title">收货电话：13364789874</p>
+						<p class="title">收货地址：北京市朝阳区小营北路29号院6号楼二层</p>
+						<a href="/xyz/2016/0420/refund.html" class="vipInfo-modify-btn">退款</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<script src="store/js/jq.js"></script>
+<script>
+	function mod_people(t){
+		$(t).parents(".vipInfo-man").find(".show").hide();
+		$(t).parents(".vipInfo-man").find(".hide").show();
+	}
+	var intege =  "^[1-9]\\d*$";
+	function sub_people(t){
+		var val = $("input[name='radio-1-set']:checked").val();
+		var age = $("input[name='age']").val();
+		$("#sex").html(val);
+		if(new RegExp(intege).test(age)){
+			$("#age").html(age);
+		}
+		$(t).parents(".vipInfo-man").find(".show").show();
+		$(t).parents(".vipInfo-man").find(".hide").hide()
+	}
+	$(function(){
+		$(".cargo-info-list li").click(function(){
+			var _self = $(this);
+			_self.find(".vipInfoBox").removeClass("bg").addClass("bg_click");
+			_self.find(".address_details").slideDown()
+		})
+	})
+</script>
+</body>
+</html>
+

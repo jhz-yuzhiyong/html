@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-use-rem = "750">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>查看购买</title>
+<link href="store/style/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body >
+<script type="text/javascript" src="store/js/rem.js"></script>
+	<section class="buy_header">
+		<img src="store/style/img/jqren3.jpg" alt="" class="det_header_img">
+		<div class="buy_header_txt">
+			<p class="buy_txt1">家用机器人</p>
+			<p class="buy_txt2">教育、娱乐、服务三大功能集齐于一身</p>
+			<p class="buy_txt3">价格：￥7988</p>
+			<a href="javascript:;" class="buy_header_a">
+				<p class="cli_btn">点击详情页面</p>
+			</a>
+		</div>
+	</section>
+	<section class="order">
+		<p class="order_text">订单详情</p>
+		<div class="ord_vipInfoAddress ord_vipInfo">
+			<div class="ord_vipInfo-man">
+				<p><em>收  货 人：</em><span>李小勇</span></p>
+				<p><em>收货电话：</em><span>13478965001</span></p>
+				<p><em>收货地址：</em><span>北京市朝阳区小营北路29号院6号楼二层</span></p>
+				<a href="#" class="ord_vipInfo-modify-btn">更改地址</a>
+			</div>
+		</div>
+		<div class="ord_payment">
+			<div class="ord_payment-man">
+				<p class="ord_payment-man_p1">产品数量：
+				<select class="ord_payment-man_sel">
+					<option value="">1</option>	
+					<option value="">2</option>	
+					<option value="">3</option>
+					<option value="">4</option>
+					<option value="">5</option>
+				</select>
+				</p>
+				<p class="ord_invoice">发票：<span>普通发票</span><span class="ord_personal">个人</span> 
+					<input type="checkbox" value="" class="ord_choice" id="ord_need_1" />
+					<label for="ord_need_1" class="ord_need">需发票</label>
+				</p>
+				<p class="ord_recom"><em>推荐机器人ID：</em><span class="ord_recom_id">12345678900</span><span class="ord_recom_txt">减100元</span></p>
+				<p class="ord_Price"><em>合计价格：</em><span>￥7888.00</span></p>
+				<a href="#" class="ord_vipInfo-pay-btn">支付订单</a>
+			</div>
+		</div>
+	</section>
+
+	<div class="fail" style="display:none">
+		<div class="fail_content">
+			<p class="fail_img"><img src="store/style/img/false.png" alt=""></p>
+			<p class="fail_txt1">很抱歉，您支付失败！</p>
+			<p class="fail_txt2">Failure sentences！</p>
+			<p class="fail_txt3">请您重新下单，谢谢！</p>
+		</div>
+	</div>
+	<div class="suc">
+		<div class="suc_content">
+			<p class="suc_img"><img src="store/style/img/succss.png" alt=""></p>
+			<p class="suc_txt1">恭喜你购买成功！</p>
+			<p class="suc_txt2">Congratulations!</p>
+			<p class="suc_txt3">请在“胖粉中心”的“我的订单”中查询您的订单详情，关注发货状态哦！</p>
+		</div>
+	</div>
+	<div class="cover-bg"></div>
+<script type="text/javascript" src="store/js/jq.js"></script>
+<script>
+		/*支付成功弹出框*/
+		$('.ord_vipInfo-pay-btn').on('click',function (){
+			$('.suc').show();
+			$('.cover-bg').show();
+
+		});
+</script>
+</body>
+</html>

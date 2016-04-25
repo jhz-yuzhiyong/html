@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-use-rem = "750">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>查看购买预定</title>
+<link href="store/style/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body >
+<script type="text/javascript" src="store/js/rem.js"></script>
+	<section class="buy_header">
+		<img src="store/style/img/jqren3.jpg" alt="" class="det_header_img">
+		<div class="buy_header_txt">
+			<p class="buy_txt1">家用机器人</p>
+			<p class="buy_txt2">教育、娱乐、服务三大功能集齐于一身</p>
+			<p class="buy_txt3">价格：￥7988</p>
+			<a href="/xyz/2016/0420/prodet.html" class="buy_header_a">
+				<p class="cli_btn">点击详情页面</p>
+			</a>
+		</div>
+	</section>
+	<section class="order">
+		<p class="order_text">订单详情</p>
+		<div class="ord_vipInfoAddress ord_vipInfo">
+			<div class="ord_vipInfo-man">
+				<p>收&nbsp;货&nbsp;人&nbsp;&nbsp;：<input type="text" class="age-text" name="name" value="李小勇"/></p>
+				<p>收货电话：<input type="text" class="age-text" name="phone" value="13478965001"/></p>
+				<p>收货地址：<textarea class="age-text textarea" style="">北京市朝阳区小营北路29号院6号楼二层</textarea></p>
+			</div>
+			<a href="/xyz/2016/0420/address.html" class="ord_vipInfo-modify-btn">更改地址</a>
+		</div>
+		<div class="pur_payment">
+			<div class="ord_payment-man">
+				<p class="ord_payment-man_p1">产品数量：
+				<select class="ord_payment-man_sel">
+					<option value="">1</option>	
+				</select>
+				</p>
+				<p class="ord_invoice">发票：普通发票<span class="ord_personal">个人</span><label for="ord_need_1" class="ord_need"><input type="checkbox" value="" class="ord_choice" id="ord_need_1" />需发票</label>
+				</p>
+				<p class="ord_recom">推荐机器人ID：<input type="text" class="pur_recom_int"><span class="pur_recom_txt">减100元</span></p>
+				<p class="ord_Price"><em>合计价格：</em><span id="total_money">￥<i>7888.00</i></span></p>
+			</div>
+			<a href="javascript:;" class="pur_vipInfo-pay-btn">预定</a>
+			<span class="pur_remind r">预付订单于15日后发货！</span>
+		</div>
+	</section>
+	<div class="suc">
+		<div class="suc_content">
+			<p class="suc_img"><img src="store/style/img/succss.png" alt=""></p>
+			<p class="suc_txt1">恭喜你购买成功！</p>
+			<p class="suc_txt2">Congratulations!</p>
+			<p class="suc_txt3">请在“胖粉中心”的“我的订单”中查询您的订单详情，关注发货状态哦！</p>
+		</div>
+	</div>
+	<div class="cover-bg"></div>
+	<script type="text/javascript" src="store/js/jq.js"></script>
+<script>
+		
+		$(function(){
+			/*支付成功弹出框*/
+			$('.pur_vipInfo-pay-btn').on('click',function (){
+				$('.suc').show();
+				$('.cover-bg').show().click(function(){
+					location.href = "/xyz/2016/0420/userinfo.html"
+				});
+				
+			});
+			var int_number =  "^[1-9]\\d*$";
+			var flag = true;
+			var money =7888;
+			$(".pur_recom_int").keyup(function (evt) {
+			    var key = evt.keyCode ? evt.keyCode : evt.which;
+			    if(new RegExp(int_number).test(key)&&flag){
+			    	$("#total_money i").html((money-100)+".00");
+			    	flag = false;
+			    }
+			});
+		})
+</script>
+</body>
+</html>
