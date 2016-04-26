@@ -53,8 +53,9 @@ input[type="text"],input[type="button"], input[type="submit"], input[type="reset
 .header{ min-width: 1200px; width: 100%; _width:100%; background: #FFFFFF; overflow: hidden; clear: both; position: fixed; top: 0; left: 0; z-index: 1000;}
 .logo{ height: 52px;}
 .nav{ border-top: 1px solid #d6e1ef; border-bottom: 1px solid #d6e1ef; height: 37px; background: #00479d; overflow: hidden; clear: both;}
-.nav a{ color: #FFFFFF; margin:0 40px; line-height: 37px; padding: 0 8px; font-size: 14px; float: left;  border-left: 1px solid transparent; border-right: 1px solid transparent;}
+.nav a{ color: #FFFFFF;/* margin:0 40px;*/ line-height: 37px; padding: 0 8px; font-size: 14px; float: left;  border-left: 1px solid transparent; border-right: 1px solid transparent;}
 .nav a:hover , .nav a.cur{border-left: 1px solid #d6e1ef; border-right: 1px solid #d6e1ef; background: #FFFFFF; color: #00479d;}
+.hover_cur{ position: absolute; width: 0px; height: 37px; border-left: 1px solid #d6e1ef; border-right: 1px solid #d6e1ef; background: #FFFFFF;}
 .sec_menu{ height: 31px; background: #f3f4f4; overflow: hidden; clear: both;}
 .sec_menu a , .sec_menu span{ float: right;}
 .sec_menu a.menu{ color: #005e9b; font-size: 12px; line-height: 31px;}

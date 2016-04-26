@@ -195,14 +195,23 @@ html, body {
 $(function(){
 	$('#dowebok').fullpage({
 		sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
-		paddingTop:"200px"
+		paddingTop:"200px",
+		anchors: ['page1', 'page2', 'page3', 'page4'],
+		menu: false
 	});
 });
 </script>
 </head>
 
 <body>
-	<div class="" style="width: 100%; height: 200px; position: absolute; top: 0; left: 0; background: #FFFFFF; z-index: 9;"></div>
+	<div class="" style="width: 100%; height: 200px; position: absolute; top: 0; left: 0; background: #FFFFFF; z-index: 9;">
+		<ul id="menu">
+			<li data-menuanchor="page1" class="active"><a href="#page1">第一屏</a></li>
+			<li data-menuanchor="page2"><a href="#page2">第二屏</a></li>
+			<li data-menuanchor="page3"><a href="#page3">第三屏</a></li>
+			<li><a href="#page4">第四屏</a></li>
+		</ul>
+	</div>
 <div id="dowebok">
 	<div class="section">
 		<h3>第一屏</h3>
