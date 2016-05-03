@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="column_wrapper">
+		<div class="order_car_title">
+			<span class="checkbox"><input type="checkbox" id="checkAll" checked /><label for="checkAll">全选</label></span>
+			<span class="order_name">商品名称</span>
+			<span class="order_price text_center">单价</span>
+			<span class="order_num text_center">数量</span>
+			<span class="order_all text_center">小计</span>
+			<span class="order_operation text_center">操作</span>
+		</div>
+		
+		<div class="" id="product_box"></div>
+		<div class="" id="parts_box"></div>
+		<div class="order_final">
+			<span class="order_final_all"><span class="choice_0429">共<i>2</i>件物品，已选择<i>2</i>件</span>     合计：<i id="total_money">0</i></span>
+			<a href="javascript:;" class="order_final_btn">去结算</a>
+		</div>
+		<div class="vspace"></div>
+		<div class="bg">
+			<ul class="product_list product_parts_list" id="parts">
+				<li data-value="2" data-number = "EO1-FO1-No" onclick="add_product_html(this)">
+					<h3>配件：体感空鼠</h3>
+					<p>体感游戏必备</p>
+					<p>326元</p>
+					<a href="javascript:;" style="color: #FF0000;">添加</a>
+				</li>
+				<li data-value="3" data-number = "EO1-FO2-No">
+					<h3>配件：便捷线充</h3>
+					<p>应急必备</p>
+					<p>326元</p>
+					<a href="javascript:;" style="color: #FF0000;">添加</a>
+				</li>
+				<li data-value="4" data-number = "EO1-FO3-No">
+					<h3>配件：互动麦克</h3>
+					<p>公用场所必备</p>
+					<p>326元</p>
+					<a href="javascript:;" style="color: #FF0000;">添加</a>
+				</li>
+				<li data-value="5" data-number = "EO1-FO4-No">
+					<h3>配件：净化器滤网</h3>
+					<p>好家居必备</p>
+					<p>326元</p>
+					<a href="javascript:;" style="color: #FF0000;">添加</a>
+				</li>
+			</ul>
+		</div>
+		<input type="hidden" value="" name="total_goods" />
+		<input type="hidden" value="" name="choice_goods" />
+		<!--物品ID和数量-->
+		<input type="hidden" value='' name="input_product_json"/>
+	</div>
+	<div class="vspace"></div>
+	<div class="footer">
+		<div class="footer_main">
+			<div class="column_wrapper">
+				<ul class="service_list">
+					<li class="icon01">1小时快修服务</li>
+					<li class="icon02">7天无理由退货</li>
+					<li class="icon03">15天免费换货</li>
+					<li class="icon04">满150元包邮</li>
+					<li class="icon05">520余家售后网点</li>
+				</ul>
+				<div class="vspace"></div>
+				<div class="footer_left">
+					<ul class="footer_list">
+						<li class="title"><a href="#" target="_blank">帮助中心</a></li>
+						<li><a href="#" target="_blank">购物指南</a></li>
+						<li><a href="#" target="_blank">支付方式</a></li>
+						<li><a href="#" target="_blank">配送方式</a></li>
+					</ul>
+					<ul class="footer_list">
+						<li class="title"><a href="#" target="_blank">服务支持</a></li>
+						<li><a href="#" target="_blank">售后政策</a></li>
+						<li><a href="#" target="_blank">自助服务</a></li>
+						<li><a href="#" target="_blank">相关下载</a></li>
+					</ul>
+					<ul class="footer_list">
+						<li class="title"><a href="#" target="_blank">线下门店</a></li>
+						<li><a href="#" target="_blank">服务网点</a></li>
+						<li><a href="#" target="_blank">线下转区</a></li>
+					</ul>
+					<ul class="footer_list">
+						<li class="title"><a href="#" target="_blank">关于进化者</a></li>
+						<li><a href="#" target="_blank">了解进化者</a></li>
+						<li><a href="#" target="_blank">加入进化者</a></li>
+						<li><a href="#" target="_blank">联系我们</a></li>
+					</ul>
+					<ul class="footer_list">
+						<li class="title"><a href="#" target="_blank">关注我们</a></li>
+						<li><a href="#" target="_blank">新浪微博</a></li>
+						<li><a href="#" target="_blank">官方微信</a></li>
+					</ul>
+				</div>
+				<div class="footer_right">
+					<p class="service_tel">400-008-9869</p>
+					<p class="service_time">周一至周日 9：00-18：00</p>
+					<div class="text_center"><a href="#" class="service_people">24小时在线客服</a></div>
+				</div>
+			</div>
+		</div>
+		<p class="copyright">北京进化者机器人科技有限公司@版权所有  京ICP备15054745   北京市朝阳区小营北路29号院6号楼2层      联系电话：010-59487765</p>
+	</div>
+	<script src="js/jq.js"></script>
+	<!--[if lt IE 8]>
+		<script src="js/json2.js"></script>
+	<![endif]-->
+	<script src="js/product.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#total_money").html(getCookie("total_money"));
+			var parts_list = getCookie("partsNo_str").split("_|_");
+			parts_list.pop();
+			var product_list = getCookie("productNo_str").split("_|_");
+			product_list.pop();
+			/*生成周边产品html*/
+			for(var i=0;i<product_json.product_parts.length;i++){
+	            for(var j=0;j<parts_list.length;j++) {
+	                if( product_json.product_parts[i].productNo ==parts_list[j]){
+	                    product_html(product_json.product_parts[i],"parts_box");
+	                }
+	            }
+	            
+	        }
+			/*生成产品html*/
+			for(var i=0;i<product_json.product_data.length;i++){
+				for(var j=0;j<parts_list.length;j++) {
+					if( product_json.product_data[i].productNo ==product_list[j]){
+	                    product_html(product_json.product_data[i],"product_box");
+	                }
+				}
+	        }
+			/*获取周边产品信息*/
+			for(var i=0;i<$("#parts li").length;i++){
+				for(var k = 0;k < parts_list.length; k++){
+					if($("#parts li").eq(i).data("number")==parts_list[k]){
+						$("#parts li").eq(i).hide();
+					}
+				}
+			}
+			$("input[name='total_goods']").val(parts_list.length+product_list.length);
+			$("input[name='choice_goods']").val(parts_list.length+product_list.length);
+			$(".choice_0429").html('共<i>'+$("input[name='total_goods']").val()+'</i>件物品，已选择<i>'+$("input[name='total_goods']").val()+'</i>件')
+			/*
+			 * get_product_json赋值 存储产品ID和数量的
+			 * */
+			input_product_json_set();
+			/*
+			 * 提交结算
+			 * */
+			$(".order_final_btn").click(function(){
+				var input_product_json_val = $.parseJSON($("input[name='input_product_json']").val());
+				for(var i in input_product_json_val.data){
+					var name = $("input[name='"+i+"']");
+					input_product_json_val.data[i] = name.attr("productnumber");
+				}
+				setCookie("input_product_json_val",JSON.stringify(input_product_json_val));
+			});
+			
+			$("#checkAll").click(function() {
+				$(this).find("input[name='check1']")
+                $('input[name="subBox"]').attr("checked",this.checked); 
+            });
+            var $subBox = $("input[name='subBox']");
+            $subBox.click(function(){
+                $("#checkAll").attr("checked",$subBox.length == $("input[name='subBox']:checked").length ? true : false);
+                
+            });
+		});
+		function product_html(data,id){
+			var html = '<div class="order_box '+data.productNo+'"><a href="javascript:;" class="checkbox"><label for="'+data.productNo+'"><input type="checkbox" id="'+data.productNo+'" name="subBox" checked /></label></a><div class="img"><img src="'+data.productImageUrl+'" width="100" height="100" /></div><div class="order_name_text"><h3>配件：'+data.productName+'</h3></div><div class="order_price_text text_center"><span>'+data.productPrice+'元</span></div><div class="order_num_text"><a href="javascript:;" class="lost text_center" symbol="-" onclick="jisuan(this)">-</a><input type="text" class="num" data-m = "'+data.productPrice+'" value="1" onblur="onblur_num(this)" symbol = "$" /><input type="hidden" value="input_'+data.productNo+'" productNumber = "1" name = "'+data.productNo+'"/><a href="javascript:;" class="add text_center" symbol="+" onclick="jisuan(this)">+</a></div><div class="order_all_text text_center"><span class = "">'+data.productPrice+'元</span></div><div class="order_operation_btn text_center"><a href="javascript:;" onclick = "del_product_html(\''+data.productNo+'\')">删除</a></div><div class="vspace"></div>';
+			if(data.productPackage && data.productPackage.length!=0){
+				html +='<div class="order_group_info"><p class="order_group_info_notes">该商品为套餐商品，其中包含如下单品：</p><ul class="order_group_info_list">'
+				for(var i = 0 ; i<data.productPackage.length;i++){
+					html += '<li><div class="img"><img src="'+data.productPackage[i].productPackageImageUrl+'" width="100" height="100" /></div><div class="text"><span>'+data.productPackage[i].productPackageName+'型号：<i>'+data.productPackage[i].productPackageModel+'</i></span></div><div class="num"><span>1</span></div></li>';
+				}
+				html += '</ul></div>'
+			}
+			html += '</div>';
+			$(html).appendTo($("#"+id));
+		}
+		function jisuan(id){
+			var n = parseInt($(id).siblings("input.num").val());
+			var v = $(id).attr("symbol");
+			var m = parseFloat($(id).siblings("input.num").data("m")).toFixed(2);
+			var total_money = $("#total_money").html();
+			switch (v){
+				case "+":
+					$(id).siblings("input.num").val(n+1);
+					$(id).parents(".order_num_text").next(".order_all_text").find("span").html(m*(n+1)+"元");
+					$(id).siblings("input[type='hidden']").attr("productNumber",n+1);
+					$("#total_money").html(parseInt(total_money)+m*1);
+					break;
+				case "-":
+					if(n>1){
+						$(id).siblings("input.num").val(n-1);
+						$(id).parents(".order_num_text").next(".order_all_text").find("span").html(m*(n-1)+"元");
+						$(id).siblings("input[type='hidden']").attr("productNumber",n-1);
+						$("#total_money").html(parseInt(total_money)-m*1);
+					}
+					break;
+				default:
+					break;
+			}
+		}
+
+		function onblur_num(id){
+			var kn = parseInt($(id).val()),km = parseFloat($(id).data("m")).toFixed(2),total_money = $("#total_money").html(),ind = $(id).siblings("input[type='hidden']").attr("productNumber")
+			if(!/^[1-9]\d*/.test($(id).val())){
+				$(id).val(ind);
+				alert("ajdfladfasf~~~");
+				return false;
+			}
+			$(id).parents(".order_num_text").next(".order_all_text").find("span").html(km*($(id).val())+"元");
+			$("#total_money").html(parseInt(total_money)+km*($(id).val()-parseInt(ind)));
+			$(id).siblings("input[type='hidden']").attr("productNumber",kn);
+		}
+		/*JSON结构{"data":[{"name":"EO1-FO2-No","value":"1"},{"name":"EO1-FO3-No","value":"1"},{"name":"EO1-No","value":"1"}]}*/
+		function input_product_json_set(d){
+			var get_product_json = getCookie("partsNo_str") + getCookie("productNo_str");
+			var get_product_json_arr = get_product_json.split("_|_");
+			get_product_json_arr.pop();
+			var input_product_json = "";
+			input_product_json += "{\"data\":[";
+			for(var i = 0; i<get_product_json_arr.length;i++){
+				if(i==get_product_json_arr.length-1){
+					input_product_json += "{\"name\":\"" + get_product_json_arr[i] + "\",\"value\":\"1\"}";
+				}else{
+					input_product_json += "{\"name\":\"" + get_product_json_arr[i] + "\",\"value\":\"1\"},";
+				}
+			}
+			if(arguments[0]){
+				input_product_json += ",{\"name\":\"" + d + "\",\"value\":\"1\"}"
+			}
+			
+			input_product_json += "]}";
+			$("input[name='input_product_json']").val(input_product_json);
+		}
+		/*添加周边产品
+		 * {"name":"EO1-FO3-No","value":"1"}
+		 * data-number 产品id
+		 * */
+		function add_product_html(obj){
+			var v = $.parseJSON($("input[name='input_product_json']").val());
+			var f = false;
+			var name = $(obj).data("number");
+	        for(var i=0; i<v.data.length; i++){
+				if(v.data[i].name != name){
+					f = true;
+					break;
+				}	
+			}
+			if(f){
+				var addinfo = {"name":name,"value":"1"};
+				v.data.push(addinfo);
+			}
+	        $("input[name='input_product_json']").val(JSON.stringify(v));
+	        for(var i=0;i<product_json.product_parts.length;i++){
+                if( product_json.product_parts[i].productNo ==name){
+                    product_html(product_json.product_parts[i],"parts_box");
+                    var total_money = $("#total_money").html();
+                    $("#total_money").html(parseInt(total_money)+parseInt(product_json.product_parts[i].productPrice));
+                }
+	        }
+	        $(obj).hide();
+	        
+		}
+		/*删除周边产品
+		 * {"name":"EO1-FO3-No","value":"1"}
+		 * data-number 产品id
+		 * */
+		function del_product_html(name){
+			var v = $.parseJSON($("input[name='input_product_json']").val());
+	        for (var i = 0; i < v.data.length; i++) {
+	            var cur_v = v.data[i];
+	            if (cur_v.name == name) {
+	                v.data.splice(i, 1);
+	            }
+	        }
+	        $("input[name='input_product_json']").val(JSON.stringify(v));
+			$("."+name).remove();
+			for(var i = 0;i < $("#parts li").length; i++){
+				if($("#parts li").eq(i).data("number")==name){
+					$("#parts li").eq(i).show();
+				}
+			}
+			var total_money = $("#total_money").html();
+            $("#total_money").html(parseInt(total_money)+parseInt(product_json.product_parts[i].productPrice));
+		}
+		function getCookie(name) {
+		    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+		    if (arr = document.cookie.match(reg)) return unescape(arr[2]);
+		    else return null
+		}
+		 
+		function setCookie(name, value) {
+		    var Days = 30;
+		    var exp = new Date();
+		    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+		    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()
+		}
+		 
+		function delCookie(name) {
+		    var exp = new Date();
+		    exp.setTime(exp.getTime() - 30);
+		    var cval = getCookie(name);
+		    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()
+		}
+	</script>
+</body>
+</html>
+
